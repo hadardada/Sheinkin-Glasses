@@ -1,0 +1,299 @@
+{
+	"info": {
+		"_postman_id": "6107be4a-cfd0-41b2-9b28-9a6c613fb40f",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14038779"
+	},
+	"item": [
+		{
+			"name": "getHistoryByRange",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let fromVal = pm.collectionVariables.get(\"toVal\");\r",
+							"fromVal++;\r",
+							"let toVal = fromVal + 650;\r",
+							"if (fromVal == null){\r",
+							"    fromVal = 0;\r",
+							"    toVal = 650;\r",
+							"}\r",
+							"\r",
+							"pm.collectionVariables.set(\"fromVal\", fromVal);\r",
+							"pm.collectionVariables.set(\"toVal\", toVal);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.code;\r",
+							"if (jsonData == 200){\r",
+							"    console.log(JSON.stringify(JSON.parse(responseBody)));\r",
+							"    console.log(\"**\"); //printing in a special way, so later we can set the console settings to be - custom: check log only, and check \"hide network\". then when we copy logs to clipboard, it would be easy to turn it into a valid json derulo file.\r",
+							"    postman.setNextRequest(\"NewRequest\");\r",
+							"}else{\r",
+							"    pm.collectionVariables.clear();\r",
+							"    postman.setNextRequest(null);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disableUrlEncoding": false
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authority",
+						"value": "api.practi.net"
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "accept-language",
+						"value": "he-IL,he;q=0.9,en-US;q=0.8,en;q=0.7"
+					},
+					{
+						"key": "origin",
+						"value": "https://backoffice.practi.net"
+					},
+					{
+						"key": "range",
+						"value": "{{fromVal}}-{{toVal}}"
+					},
+					{
+						"key": "range-unit",
+						"value": "items"
+					},
+					{
+						"key": "referer",
+						"value": "https://backoffice.practi.net/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-site"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "x-practi-business-id",
+						"value": "4634"
+					},
+					{
+						"key": "x-practiauthorization",
+						"value": "Bearer 127f1819-80c1-455c-a0a5-571b63fe5fc2"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.practi.net/backoffice/z-reports?_endDateTime=2022-12-14T23:59:59&_startDateTime=2018-12-14T00:00:00",
+					"protocol": "https",
+					"host": [
+						"api",
+						"practi",
+						"net"
+					],
+					"path": [
+						"backoffice",
+						"z-reports"
+					],
+					"query": [
+						{
+							"key": "_endDateTime",
+							"value": "2022-12-14T23:59:59"
+						},
+						{
+							"key": "_startDateTime",
+							"value": "2018-12-14T00:00:00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCustomers",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let fromVal = pm.collectionVariables.get(\"toVal\");\r",
+							"fromVal++;\r",
+							"let toVal = fromVal + 650;\r",
+							"if (fromVal == null){\r",
+							"    fromVal = 0;\r",
+							"    toVal = 650;\r",
+							"}\r",
+							"\r",
+							"pm.collectionVariables.set(\"fromVal\", fromVal);\r",
+							"pm.collectionVariables.set(\"toVal\", toVal);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.code;\r",
+							"if (jsonData == 200){\r",
+							"    console.log(JSON.stringify(JSON.parse(responseBody)));\r",
+							"    console.log(\"**\"); //printing in a special way, so later we can set the console settings to be - custom: check log only, and check \"hide network\". then when we copy logs to clipboard, it would be easy to turn it into a valid json derulo file.\r",
+							"    postman.setNextRequest(\"NewRequest\");\r",
+							"}else{ // out of range\r",
+							"    pm.collectionVariables.clear();\r",
+							"    postman.setNextRequest(null);\r",
+							"}\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authority",
+						"value": "api.practi.net"
+					},
+					{
+						"key": "accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "accept-language",
+						"value": "he-IL,he;q=0.9,en-US;q=0.8,en;q=0.7"
+					},
+					{
+						"key": "origin",
+						"value": "https://backoffice.practi.net"
+					},
+					{
+						"key": "range",
+						"value": "{{fromVal}}-{{toVal}}"
+					},
+					{
+						"key": "range-unit",
+						"value": "items"
+					},
+					{
+						"key": "referer",
+						"value": "https://backoffice.practi.net/"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Not?A_Brand\";v=\"8\", \"Chromium\";v=\"108\", \"Google Chrome\";v=\"108\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "empty"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "cors"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "same-site"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "x-practi-business-id",
+						"value": "4634"
+					},
+					{
+						"key": "x-practiauthorization",
+						"value": "Bearer d0691f05-b3f8-4ffa-a1e1-b1879e9ed96d"
+					}
+				],
+				"url": {
+					"raw": "https://api.practi.net/backoffice/customers",
+					"protocol": "https",
+					"host": [
+						"api",
+						"practi",
+						"net"
+					],
+					"path": [
+						"backoffice",
+						"customers"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "fromVal",
+			"value": ""
+		},
+		{
+			"key": "toVal, toVal",
+			"value": ""
+		},
+		{
+			"key": "toVal",
+			"value": ""
+		}
+	]
+}
